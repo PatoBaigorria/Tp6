@@ -5,9 +5,9 @@
  */
 package tp6;
 
-import F.VistaAgregarClientes;
-import F.VistaBorrarClientes;
-import F.VistaBuscarClientes;
+import tp6.VistaAgregarClientes;
+import tp6.VistaBorrarClientes;
+import tp6.VistaBuscarClientes;
 
 /**
  *
