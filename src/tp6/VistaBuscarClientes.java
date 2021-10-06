@@ -43,6 +43,7 @@ public class VistaBuscarClientes extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jtCiudad = new javax.swing.JTextField();
+        jbLimpiarCampos = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 153, 153));
 
@@ -53,7 +54,12 @@ public class VistaBuscarClientes extends javax.swing.JInternalFrame {
 
         jbSalir.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jbSalir.setText("Salir");
-        jbSalir.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jbSalir.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 102, 102), null));
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalirActionPerformed(evt);
+            }
+        });
 
         jbBuscar.setText("Buscar");
         jbBuscar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -95,6 +101,15 @@ public class VistaBuscarClientes extends javax.swing.JInternalFrame {
         jLabel6.setForeground(new java.awt.Color(51, 0, 204));
         jLabel6.setText("CIUDAD:");
 
+        jbLimpiarCampos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jbLimpiarCampos.setText("Limpiar Campos");
+        jbLimpiarCampos.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 153, 153), null));
+        jbLimpiarCampos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbLimpiarCamposActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -128,13 +143,14 @@ public class VistaBuscarClientes extends javax.swing.JInternalFrame {
                         .addGap(127, 127, 127))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(142, 142, 142))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(63, 63, 63))))
+                .addComponent(jLabel1)
+                .addGap(142, 142, 142))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(84, 84, 84)
+                .addComponent(jbLimpiarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
+                .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,7 +178,9 @@ public class VistaBuscarClientes extends javax.swing.JInternalFrame {
                     .addComponent(jLabel6)
                     .addComponent(jtCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbLimpiarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26))
         );
 
@@ -191,20 +209,44 @@ public class VistaBuscarClientes extends javax.swing.JInternalFrame {
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         // TODO add your handling code here:
-               
-      
-           
+                 
         String tel = jtTelefono.getText();
+        
+        
+        Cliente c = MenuPrincipal.getDirectorioTelefonico().buscarCliente(tel);
         
         if("".equals(tel)){
             JOptionPane.showMessageDialog(this, "Debe Ingresar un Teléfono");
-            return;
+        }if(c==null){
+            JOptionPane.showMessageDialog(this,"El Cliente NO EXISTE");
+        }else{
+            jtDni.setText(Long.toString(c.getDni()));
+            jtApellido.setText(c.getApellido());
+            jtNombre.setText(c.getNombre());
+            jtCiudad.setText(c.getCiudad());
         }
-        for(Cliente it:lista){
-            
-        }
+       
         
     }//GEN-LAST:event_jbBuscarActionPerformed
+    private void limpiar(){
+    
+        jtDni.setText("");
+        jtNombre.setText("");
+        jtApellido.setText("");
+        jtCiudad.setText("");
+        jtTelefono.setText("");
+    }
+    
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jbSalirActionPerformed
+
+    private void jbLimpiarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarCamposActionPerformed
+        // TODO add your handling code here:
+        limpiar();
+        
+    }//GEN-LAST:event_jbLimpiarCamposActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -216,6 +258,7 @@ public class VistaBuscarClientes extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jbBuscar;
+    private javax.swing.JButton jbLimpiarCampos;
     private javax.swing.JButton jbSalir;
     private javax.swing.JTextField jtApellido;
     private javax.swing.JTextField jtCiudad;
