@@ -36,9 +36,9 @@ public class Tp6 {
         
         System.out.println("El número de Teléfono de " + c3.getApellido()+" es: "+ dir.buscarTelefono("Romero"));
         
-        System.out.println("El Cliente "+dir.borrarCliente(20749823)+" fue ELIMINAD@ CON ÉXITO");
+        System.out.println("El Cliente " + dir.borrarCliente(11249586)+" fue ELIMINAD@ CON ÉXITO");
         
-        System.out.println("El Cliente no Existe"+dir.buscarTelefono("Toledo"));
+        System.out.println("El Cliente no Existe"+dir.buscarTelefono("Romero"));
         
     }
     

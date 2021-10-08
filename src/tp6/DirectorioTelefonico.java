@@ -60,17 +60,19 @@ public class DirectorioTelefonico {
     }
     
     
-    public Cliente borrarCliente (long dni){
+    public TreeMap borrarCliente (long dni){
     
-        Set<String> dniclaves=lista.keySet();
+        TreeMap<String, Cliente>clienteB = new TreeMap<>();
+        Set<String>claveDni=lista.keySet();
         
-        for (String it:dniclaves){
+        for(String it:claveDni){
             Cliente c=lista.get(it);
-            
-            if (c.getDni() == dni){
+            if(c.getDni()==dni){
+                clienteB.put(it, c);
                 lista.remove(it);
-                return c;
+               
             }
+             return clienteB;
             
         }
         return null;

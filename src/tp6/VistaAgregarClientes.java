@@ -277,7 +277,7 @@ public class VistaAgregarClientes extends javax.swing.JInternalFrame {
         DirectorioTelefonico dt = MenuPrincipal.getDirectorioTelefonico();
                 
         if(dt.agregarCliente(t, c)){
-            JOptionPane.showMessageDialog(this, "Cliente Agregado Exitosamente");
+            JOptionPane.showMessageDialog(this, "Cliente Agregado con Éxito");
         }else{
             JOptionPane.showMessageDialog(this, "No se pudo Agregar el Cliente, Teléfono Repetido");
         }

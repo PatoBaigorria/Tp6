@@ -206,13 +206,18 @@ public class VistaBorrarClientes extends javax.swing.JInternalFrame {
 
     private void jbBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBorrarActionPerformed
         // TODO add your handling code here:
+        TreeMap<String, Cliente> borrado;
         
-        Cliente c = MenuPrincipal.getDirectorioTelefonico().borrarCliente(Long.parseLong(jtDni.getText()));
         
-                     
+         borrado = MenuPrincipal.getDirectorioTelefonico().borrarCliente(Long.parseLong(jtDni.getText()));
+        
+           long telefono = Long.parseLong(borrado.firstKey());
+           
+           Cliente c = (Cliente)borrado.get((borrado.firstKey()));
+           
         JOptionPane.showMessageDialog(null,"El Cliente "+c.getApellido()+" fue ELIMINADO");
         
-            //jtTelefono.setText(c.
+            jtTelefono.setText(Long.toString(telefono));
             jtApellido.setText(c.getApellido());
             jtNombre.setText(c.getNombre());
             jtCiudad.setText(c.getCiudad());
