@@ -66,7 +66,7 @@ class Cliente {
 
     @Override
     public String toString(){
-    return "Nombre y Apellido: "+this.nombre+" "+this.apellido+" - Ciudad: "+this.ciudad+" - Dirección: "+this.direccion;
+    return "Nombre y Apellido: "+nombre+" "+apellido+" - Ciudad: "+ciudad+" - Dirección: "+direccion;
     }
     
     
